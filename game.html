@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        padding: 0px 0px 0px 0px;
+        margin: 0px 0px 0px 0px;
+    }
+
+    .playField {
+        position: relative;
+        width: 1000px;
+        height: 1000px;
+        border: 5px solid #CCC;
+        border-radius: 10px;
+    }
+
+
+    .playerCircle {
+        position: absolute;
+        top: 90px;
+        left: 90px;
+        width: 20px;
+        height: 20px;
+        background: green;
+        border-radius: 100%;
+    }
+
+    #meta {
+        width: 75px;
+        height: 75px;
+        border-radius: 37.5px;
+        background-color: black;
+        margin-left: 915px;
+        margin-top: 815px;
+    }
+</style>
+
+<body>
+    <div class="playField">
+        <div class="playerCircle"></div>
+    </div>
+    <pre class="output"></pre>
+</body>
+<script>
+    let ball = document.querySelector('.playerCircle');
+    let garden = document.querySelector('.playField');
+    let output = document.querySelector('.output');
+
+    let maxX = garden.clientWidth - ball.clientWidth;
+    let maxY = garden.clientHeight - ball.clientHeight;
+
+    function handleOrientation(event) {
+        let x = event.beta;  // In degree in the range [-180,180]
+        let y = event.gamma; // In degree in the range [-90,90]
+
+        output.innerHTML = "beta : " + x + "\n";
+        output.innerHTML += "gamma: " + y + "\n";
+
+        // Because we don't want to have the device upside dow
+        // We constrain the x value to the range [-90,90]
+        if (x > 90) { x = 90 };
+        if (x < -90) { x = -90 };
+
+        // To make computation easier we shift the range of 
+        // x and y to [0,180]
+        x += 90;
+        y += 90;
+
+        // 10 is half the size of the ball
+        // It center the positioning point to the center of the ball
+        ball.style.top = (maxX * x / 180 - 2) + "px";
+        ball.style.left = (maxY * y / 180 - 2) + "px";
+    }
+    setInterval(window.addEventListener('deviceorientation', handleOrientation), 100);
+    
+
+</script>
+
+</html>
