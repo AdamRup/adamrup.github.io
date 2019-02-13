@@ -71,17 +71,44 @@
                 ctx.beginPath();
                 ctx.rect(this.x, this.y, this.height, this.width);
                 ctx.fillStyle = "black";
+                if(this.name == "start"){
+                    ctx.fillStyle = "green";
+                }
+                else if(this.name == "end"){
+                    ctx.fillStyle = "red";
+                }
                 ctx.fill();
             }
         }
     }
 
     let elementArray = [];
+    elementArray.push(new Element(0,0,70,70,"start"));
+    elementArray.push(new Element(355,250,115,350,"end"));
     elementArray.push(new Element(0, 0, 700, 10, "wall"));
     elementArray.push(new Element(0,0,10,700,"wall"));
     elementArray.push(new Element(0,690,700,10,"wall"));
     elementArray.push(new Element(690,0,10,700,"wall"));
     elementArray.push(new Element(70,0,15,600,"wall"));
+    elementArray.push(new Element(70,600,100,15,"wall"));
+    elementArray.push(new Element(170,530,70,15,"wall"));
+    elementArray.push(new Element(240,530,15,170,"wall"));
+    elementArray.push(new Element(160,70,15,475,"wall"));
+    elementArray.push(new Element(170,70,440,15,"wall"));
+    elementArray.push(new Element(610,70,15,400,"wall"));
+    elementArray.push(new Element(170,70,440,15,"wall"));
+    elementArray.push(new Element(540,530,150,15,"wall"));
+    elementArray.push(new Element(540,150,15,380,"wall"));
+    elementArray.push(new Element(240,150,300,15,"wall"));
+    elementArray.push(new Element(240,150,15,290,"wall"));
+    elementArray.push(new Element(240,440,100,15,"wall"));
+    elementArray.push(new Element(340,440,15,160,"wall"));
+    elementArray.push(new Element(340,600,270,15,"wall"));
+    elementArray.push(new Element(340,250,120,15,"wall"));
+    elementArray.push(new Element(460,250,15,350,"wall"));
+    elementArray.push(new Element(340,250,15,120,"wall"));
+
+
 
 
     let canvasElement = document.getElementById('PlayGround');
