@@ -83,10 +83,10 @@
     }
 
     let elementArray = [];
-    // elementArray.push(new Element(0, 0, 700, 10, "wall"));
-    // elementArray.push(new Element(0, 0, 10, 700, "wall"));
-    // elementArray.push(new Element(0, 690, 700, 10, "wall"));
-    // elementArray.push(new Element(690, 0, 10, 700, "wall"));
+    elementArray.push(new Element(5, 0, 350, 5, "wall"));
+    elementArray.push(new Element(0, 0, 5, 350, "wall"));
+    elementArray.push(new Element(0, 345, 350, 30, "wall"));
+    elementArray.push(new Element(345, 0, 5, 350, "wall"));
     // elementArray.push(new Element(70, 0, 15, 600, "wall"));
     // elementArray.push(new Element(70, 600, 100, 15, "wall"));
     // elementArray.push(new Element(170, 530, 70, 15, "wall"));
@@ -127,7 +127,7 @@
         Gamma = x;
         Beta = y;
         y = event.beta;
-        x = event.gamma;
+        x = event.gamma * -1;
 
         // Because we don't want to have the device upside dow
         // We constrain the x value to the range [-90,90]
@@ -185,23 +185,23 @@
     }
 
     setInterval(() => {
-        for (let a = 0; a < elementArray.length; a++) {
-            if (playerObject.isColision(elementArray[a]) && elementArray[a].name == "wall") {
-                if (playerObject.isOverColision(elementArray[a])) {
+        for (let i = 0; i < elementArray.length; i++) {
+            if (playerObject.isColision(elementArray[i]) && elementArray[i].name == "wall") {
+                if (playerObject.isOverColision(elementArray[i])) {
                     plaerElementMove(playerObject, moveX, -Math.abs(moveY));
                 }
-                else if (playerObject.isUnderColision(elementArray[a])) {
+                else if (playerObject.isUnderColision(elementArray[i])) {
                     plaerElementMove(playerObject, moveX, Math.abs(moveY));
                 }
-                else if (playerObject.isRightColision(elementArray[a])) {
+                else if (playerObject.isRightColision(elementArray[i])) {
                     plaerElementMove(playerObject, Math.abs(moveX), moveY);
                 }
-                else if (playerObject.isLeftColision(elementArray[a])) {
+                else if (playerObject.isLeftColision(elementArray[i])) {
                     plaerElementMove(playerObject, -Math.abs(moveX), moveY)
                 }
             }
         }
-        
+        if (!(playerObject.isColision(elementArray[0]) || playerObject.isColision(elementArray[1]) || playerObject.isColision(elementArray[2]) || playerObject.isColision(elementArray[3])))
             plaerElementMove(playerObject, moveX, moveY)
     }, 10)
 
