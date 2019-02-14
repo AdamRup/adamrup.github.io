@@ -83,28 +83,28 @@
     }
 
     let elementArray = [];
-    elementArray.push(new Element(0, 0, 700, 10, "wall"));
-    elementArray.push(new Element(0, 0, 10, 700, "wall"));
-    elementArray.push(new Element(0, 690, 700, 10, "wall"));
-    elementArray.push(new Element(690, 0, 10, 700, "wall"));
-    elementArray.push(new Element(70, 0, 15, 600, "wall"));
-    elementArray.push(new Element(70, 600, 100, 15, "wall"));
-    elementArray.push(new Element(170, 530, 70, 15, "wall"));
-    elementArray.push(new Element(240, 530, 15, 170, "wall"));
-    elementArray.push(new Element(160, 70, 15, 475, "wall"));
-    elementArray.push(new Element(170, 70, 440, 15, "wall"));
-    elementArray.push(new Element(610, 70, 15, 400, "wall"));
-    elementArray.push(new Element(170, 70, 440, 15, "wall"));
-    elementArray.push(new Element(540, 530, 150, 15, "wall"));
-    elementArray.push(new Element(540, 150, 15, 380, "wall"));
-    elementArray.push(new Element(240, 150, 300, 15, "wall"));
-    elementArray.push(new Element(240, 150, 15, 290, "wall"));
-    elementArray.push(new Element(240, 440, 100, 15, "wall"));
-    elementArray.push(new Element(340, 440, 15, 160, "wall"));
-    elementArray.push(new Element(340, 600, 270, 15, "wall"));
-    elementArray.push(new Element(340, 250, 120, 15, "wall"));
-    elementArray.push(new Element(460, 250, 15, 350, "wall"));
-    elementArray.push(new Element(340, 250, 15, 120, "wall"));
+    // elementArray.push(new Element(0, 0, 700, 10, "wall"));
+    // elementArray.push(new Element(0, 0, 10, 700, "wall"));
+    // elementArray.push(new Element(0, 690, 700, 10, "wall"));
+    // elementArray.push(new Element(690, 0, 10, 700, "wall"));
+    // elementArray.push(new Element(70, 0, 15, 600, "wall"));
+    // elementArray.push(new Element(70, 600, 100, 15, "wall"));
+    // elementArray.push(new Element(170, 530, 70, 15, "wall"));
+    // elementArray.push(new Element(240, 530, 15, 170, "wall"));
+    // elementArray.push(new Element(160, 70, 15, 475, "wall"));
+    // elementArray.push(new Element(170, 70, 440, 15, "wall"));
+    // elementArray.push(new Element(610, 70, 15, 400, "wall"));
+    // elementArray.push(new Element(170, 70, 440, 15, "wall"));
+    // elementArray.push(new Element(540, 530, 150, 15, "wall"));
+    // elementArray.push(new Element(540, 150, 15, 380, "wall"));
+    // elementArray.push(new Element(240, 150, 300, 15, "wall"));
+    // elementArray.push(new Element(240, 150, 15, 290, "wall"));
+    // elementArray.push(new Element(240, 440, 100, 15, "wall"));
+    // elementArray.push(new Element(340, 440, 15, 160, "wall"));
+    // elementArray.push(new Element(340, 600, 270, 15, "wall"));
+    // elementArray.push(new Element(340, 250, 120, 15, "wall"));
+    // elementArray.push(new Element(460, 250, 15, 350, "wall"));
+    // elementArray.push(new Element(340, 250, 15, 120, "wall"));
     //elementArray.push(new Element(0, 0, 70, 70, "start"));
     // elementArray.push(new Element(355, 250, 115, 350, "end"));
     let canvasElement = document.getElementById('PlayGround');
@@ -115,7 +115,7 @@
         elementArray[i].createElement(ctx);
     }
 
-    let playerObject = new PlayerBall(100, 100, 10);
+    let playerObject = new PlayerBall(350, 350, 10);
     let y = 0;
     let x = 0
     let Gamma = 0;
@@ -172,7 +172,7 @@
         }
     })
 
-    function moveBall(_playerObject, _moveX, _moveY) {
+    function plaerElementMove(_playerObject, _moveX, _moveY) {
         ctx.clearRect(_playerObject.x - _playerObject.radius - 1, _playerObject.y - _playerObject.radius - 1, _playerObject.radius * 2 + 2, _playerObject.radius * 2 + 2);
 
         ctx.beginPath();
@@ -188,21 +188,21 @@
         for (let a = 0; a < elementArray.length; a++) {
             if (playerObject.isColision(elementArray[a]) && elementArray[a].name == "wall") {
                 if (playerObject.isOverColision(elementArray[a])) {
-                    moveBall(playerObject, moveX, -Math.abs(moveY));
+                    plaerElementMove(playerObject, moveX, -Math.abs(moveY));
                 }
                 else if (playerObject.isUnderColision(elementArray[a])) {
-                    moveBall(playerObject, moveX, Math.abs(moveY));
+                    plaerElementMove(playerObject, moveX, Math.abs(moveY));
                 }
                 else if (playerObject.isRightColision(elementArray[a])) {
-                    moveBall(playerObject, Math.abs(moveX), moveY);
+                    plaerElementMove(playerObject, Math.abs(moveX), moveY);
                 }
                 else if (playerObject.isLeftColision(elementArray[a])) {
-                    moveBall(playerObject, -Math.abs(moveX), moveY)
+                    plaerElementMove(playerObject, -Math.abs(moveX), moveY)
                 }
             }
         }
-        if (!(playerObject.isColision(elementArray[0])||playerObject.isColision(elementArray[1])||playerObject.isColision(elementArray[2])||playerObject.isColision(elementArray[3])||playerObject.isColision(elementArray[4])||playerObject.isColision(elementArray[5])||playerObject.isColision(elementArray[6])||playerObject.isColision(elementArray[7])||playerObject.isColision(elementArray[8])||playerObject.isColision(elementArray[9])||playerObject.isColision(elementArray[10])||playerObject.isColision(elementArray[11])||playerObject.isColision(elementArray[12])||playerObject.isColision(elementArray[13])||playerObject.isColision(elementArray[14])||playerObject.isColision(elementArray[15])||playerObject.isColision(elementArray[16])||playerObject.isColision(elementArray[17])||playerObject.isColision(elementArray[18])||playerObject.isColision(elementArray[19])||playerObject.isColision(elementArray[20])||playerObject.isColision(elementArray[21])))
-            moveBall(playerObject, moveX, moveY)
+        
+            plaerElementMove(playerObject, moveX, moveY)
     }, 10)
 
 </script>
